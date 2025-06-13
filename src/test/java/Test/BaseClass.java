@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.Home;
 import pages.Login;
+import pages.Registration;
 
 import java.time.Duration;
 
@@ -28,13 +29,31 @@ public class BaseClass {
         Home home=new Home(driver);
         home.login();
     }
+
+    //  Login test
+    // @Test
+    // public void login(){
+    //     Login login = new Login(driver);
+    //     login.login();
+    //     login.otp();
+    // }
+    
     @Test
-    public void login(){
+    public void n(){
         Login login = new Login(driver);
-        login.login();
+        login.register();
+        login.registerr();
         login.otp();
+        login.emailVer();
     }
-    //@Test
+
+    @Test
+    public void register(){
+        Registration registration = new Registration(driver);
+        
+     registration.fillDetail();
+       
+    }
 
 
     @AfterClass

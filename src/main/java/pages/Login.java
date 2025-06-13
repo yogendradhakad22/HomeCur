@@ -1,17 +1,18 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.decorators.WebDriverDecorator;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import java.time.Duration;
+import java.util.Random;
 
 public class Login {
+   
+
     WebDriver driver;
     WebDriverWait wait;
 
@@ -42,12 +43,69 @@ public class Login {
     @FindBy(xpath = "//span[text()='Verify']")
     WebElement verifyButton;
 
-    public void login(){
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        phoneNo.sendKeys("6261420133");
-        loginBut.click();
+    @FindBy(xpath = "//span[text()='Done']")
+    WebElement done;
+
+    @FindBy(xpath = "//p[text()='Register']")
+    WebElement register;
+
+    @FindBy(xpath = "//span[@class='MuiButton-label']")
+    WebElement ContinueButton;
+
+    @FindBy(xpath = "//input[contains(@placeholder,'Enter your mail id')]")
+    WebElement email;
+
+    @FindBy(xpath = "//span[text()='Continue']")
+    WebElement continueButton;
+
+    @FindBy(xpath = "//span[text()='Resend']")
+    WebElement resend;
+
+    @FindBy(xpath = "//span[text()='Done']")
+    WebElement donee;
+
+    public static String generatePhoneNumber() {
+        Random random = new Random();
+
+        int firstDigit = random.nextBoolean() ? 9 : 8;
+
+        StringBuilder phoneNumber = new StringBuilder();
+        phoneNumber.append(firstDigit);
+
+        for (int i = 0; i < 9; i++) {
+            phoneNumber.append(random.nextInt(10)); // digits 0–9
+        }
+
+        return phoneNumber.toString();
     }
 
+   public void registerr(){
+    phoneNo.sendKeys(generatePhoneNumber());
+    ContinueButton.click();
+   }
+    // public void login(){
+    //     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+    //     phoneNo.sendKeys("6261420133");
+    //     loginBut.click();
+    // }
+    public static String generateEmail() {
+        Random random = new Random();
+
+        // Random name (choose a few characters randomly)
+        String characters = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder name = new StringBuilder();
+        for (int i = 0; i < 7; i++) {
+            name.append(characters.charAt(random.nextInt(characters.length())));
+        }
+
+        // Random number (3 digits)
+        int number = 100 + random.nextInt(900); // gives a 3-digit number from 100 to 999
+
+        // Combine to form email
+        return name.toString() + number + "@gmail.com";
+    }
+
+   
     public void otp(){
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         System.out.println("Method called");
@@ -55,7 +113,16 @@ public class Login {
         digit1.sendKeys("2");
         digit2.sendKeys("3");
         digit3.sendKeys("4");
-
         verifyButton.click();
+        done.click();
+    }
+    public void register(){
+        register.click();
+    }
+    public void emailVer(){
+        email.sendKeys(generateEmail());
+        continueButton.click();
+        resend.click();
+        donee.click();
     }
 }
