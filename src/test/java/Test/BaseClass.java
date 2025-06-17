@@ -58,6 +58,6 @@ public class BaseClass {
 
     @AfterClass
     public void closure(){
-        //driver.quit();
+       // driver.quit();
     }
 }

@@ -54,13 +54,18 @@ public class Registration {
     @FindBy(xpath = "//*[@id=\"language\"]/div/div[2]/div/div/div[1]")
     WebElement hindiOption;
 
-
-    @FindBy(xpath = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text jss279 jss39']//span[@class='MuiButton-label'][normalize-space()='Submit']")
     
+    
+    @FindBy(xpath = "//div/div[13]/button[@data-test-id='secondary']")
     WebElement submit;
-    @FindBy(xpath = "//h6[text()='Register']")
-    WebElement register;
 
+    
+    @FindBy(xpath = "//span[text()='Okay']")
+   WebElement Okay;
+
+   @FindBy(xpath = "//h6[text()='Register']")
+    WebElement register;
+    
 
     public void fillDetail(){
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -79,8 +84,9 @@ public class Registration {
         
         englishOption.click();
         hindiOption.click();
-        register.click();
+      register.click();
         submit.click();
+       Okay.click();
 
     }
 
